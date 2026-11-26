@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>Storyboard Studio Pro</title>
+<style>
+:root{--bg:#090e1c;--panel:#121c30;--panel2:#0c1527;--line:#293954;--text:#edf3ff;--muted:#9eabc4;--accent:#b4a5ff;--mint:#69e6c2;--danger:#ff8da8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 82% 0,#30265b 0,transparent 35%),var(--bg);color:var(--text);font:14px/1.55 system-ui,Arial,sans-serif}
+.wrap{max-width:1450px;margin:auto;padding:22px 16px 55px}header{display:flex;align-items:center;gap:12px;margin-bottom:22px}.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--mint));display:grid;place-items:center;color:#101525;font-size:24px;font-weight:900}.eyebrow{font-size:10px;letter-spacing:.18em;color:var(--mint);font-weight:900}h1{font-size:20px;margin:0}.hero{margin:0 0 20px}.hero h2{font-size:clamp(28px,5vw,44px);line-height:1.1;letter-spacing:-.04em;margin:0 0 9px}.hero h2 span{color:var(--mint)}.hero p,.muted,.note{color:var(--muted)}.hero p{max-width:850px;margin:0}
+.grid{display:grid;grid-template-columns:360px minmax(0,1fr);gap:15px;align-items:start}.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;overflow:hidden;min-width:0}.head{padding:15px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center}.head h3{margin:0;font-size:15px}.body{padding:16px}.field{margin-bottom:13px}label{display:block;font-weight:800;font-size:12px;margin-bottom:6px}
+input,textarea,select{width:100%;padding:10px 11px;background:#091323;color:var(--text);border:1px solid var(--line);border-radius:9px;font:inherit;outline:none}textarea{min-height:76px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--accent)}input[type=file]{font-size:12px}.two{display:grid;grid-template-columns:1fr 1fr;gap:9px}.btn{border:0;border-radius:9px;padding:10px 13px;font-size:12px;font-weight:850;cursor:pointer;transition:.15s}.btn:hover{filter:brightness(1.12);transform:translateY(-1px)}.primary{background:linear-gradient(120deg,var(--accent),#d0c8ff);color:#101323}.secondary{background:#23314b;color:var(--text);border:1px solid var(--line)}.danger{background:#48283a;color:#ffc4d4}.btnrow{display:flex;gap:8px;flex-wrap:wrap}.btnrow .primary{flex:1}.pill{font-size:10px;color:#d5ceff;background:#29294b;padding:4px 8px;border-radius:7px;white-space:nowrap}.note{font-size:11px;line-height:1.5;margin:10px 0 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}.stat{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:9px}.stat strong{display:block;font-size:19px}.stat span{font-size:10px;color:var(--muted)}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}.toolbar h3{font-size:16px;margin:0}.scenes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.scene{background:var(--panel2);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}.sceneTop{display:flex;justify-content:space-between;gap:8px;padding:9px 11px;border-bottom:1px solid var(--line);font-weight:850;font-size:12px}.time{color:var(--mint);white-space:nowrap}.sceneBody{padding:10px}.scene textarea{font-size:12px;min-height:88px}.mini{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.mini label{font-size:10px;color:var(--muted)}.mini input,.mini select{font-size:11px;padding:7px}.sceneActions{text-align:right;margin-top:8px}.empty{grid-column:1/-1;text-align:center;border:1px dashed #506080;border-radius:12px;padding:35px 15px;color:var(--muted)}
+.reference-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9px}.reference-item{position:relative;background:#091323;border:1px solid var(--line);border-radius:9px;padding:6px;min-width:0}.reference-item img{display:block;width:100%;height:105px;object-fit:contain;border-radius:6px}.reference-item small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);padding:5px 2px 1px}.reference-item button{position:absolute;top:8px;right:8px;border:0;border-radius:6px;background:#48283a;color:#ffc4d4;padding:4px 7px;cursor:pointer;font-weight:900}.reference-empty{font-size:11px;color:var(--muted);margin-top:8px}
+.partsWrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:13px}.part{background:#0b1528;border:1px solid #354766;border-radius:12px;padding:12px;min-width:0}.partHead{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:7px}.part h4{margin:0;font-size:13px}.part p{font-size:11px;color:var(--muted);margin:5px 0 10px}.part .btn{width:100%}.masterBox{background:#0a1425;border:1px solid #3b4265;border-radius:11px;padding:12px;margin:12px 0}.masterBox summary{cursor:pointer;font-weight:850;color:#d7d0ff}.masterBox pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#c4cee2;font:11px/1.5 ui-monospace,monospace;margin:10px 0 0;max-height:260px;overflow:auto}
+.status{font-size:11px;color:var(--mint);min-height:17px;margin-top:7px}.sectionTitle{font-size:13px;font-weight:900;margin:17px 0 8px}.hint{font-size:10px;color:var(--muted);margin-top:5px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}@media(max-width:620px){.scenes,.partsWrap{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.wrap{padding:16px 10px 40px}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div class="wrap">
+<header><div class="logo">✦</div><div><div class="eyebrow">CREATIVE AI WORKSPACE · PRO</div><h1>Storyboard Studio Pro</h1></div></header>
+<section class="hero"><h2>Dari ide menjadi <span>serial video yang nyambung.</span></h2><p>Gunakan Gemini untuk membuat storyboard dari ide dan gambar referensi, kunci identitas karakter dan dunia cerita lewat Master Prompt, lalu unduh prompt per bagian dengan target render sekitar 10 detik. Setiap bagian otomatis membawa Master Prompt dan instruksi kesinambungan.</p></section>
+<div class="grid">
+<section class="panel"><div class="head"><div><h3>01 / Pengaturan proyek</h3><small class="muted">Acuan visual, cerita, dan format render</small></div><span class="pill">INPUT</span></div><div class="body">
+<div class="field"><label>Gambar referensi karakter (multi-file)</label><input type="file" id="file" accept="image/*" multiple><div id="referenceGallery" class="reference-gallery"></div><div id="referenceEmpty" class="reference-empty">Belum ada gambar karakter.</div><div class="hint">Unggah gambar yang sama pada AI video generator saat render. Aplikasi menyimpan nama dan pratinjau di proyek.</div></div>
+<div class="field"><label>Ide / alur cerita utama</label><textarea id="idea" placeholder="Contoh: Pewaris kuno menemukan kekuatan darahnya, menghadapi raksasa, lalu membuka rahasia kerajaan..."></textarea></div>
+<div class="field"><label>Master karakter dan konsistensi (wajib diisi untuk hasil terbaik)</label><textarea id="character" placeholder="Nama, wajah, rambut, pakaian, bentuk tubuh, warna, senjata, kekuatan, ciri khusus, larangan perubahan desain..."></textarea></div>
+<div class="field"><label>Dunia / latar utama</label><input id="setting" placeholder="Contoh: Jawa kuno, candi runtuh, hutan berkabut"></div>
+<div class="field"><label>Referensi gambar latar (opsional)</label><input type="file" id="backgroundFiles" accept="image/*" multiple><div id="backgroundGallery" class="reference-gallery"></div><small class="muted">Gunakan acuan latar yang sama pada part terkait.</small></div>
+<div class="field"><label>Perintah tambahan untuk latar</label><textarea id="backgroundVoice" placeholder="Suasana, cuaca, waktu, pencahayaan, detail lingkungan..."></textarea></div>
+<div class="two"><div class="field"><label>Jumlah scene</label><input id="count" type="number" min="1" max="60" value="6"></div><div class="field"><label>Durasi tiap scene (detik)</label><input id="duration" type="number" min="1" max="120" value="5"></div></div>
+<div class="two"><div class="field"><label>Target durasi per part</label><select id="partTarget"><option value="10" selected>10 detik (disarankan)</option><option value="15">15 detik</option><option value="20">20 detik</option><option value="30">30 detik</option></select></div><div class="field"><label>Rasio video</label><select id="ratio"><option>9:16 vertikal</option><option selected>16:9 landscape</option><option>1:1 square</option><option>4:5 portrait</option></select></div></div>
+<div class="two"><div class="field"><label>Gaya visual</label><select id="style"><option>Anime Jepang 2D semi-realistis</option><option>Anime Jepang 2D</option><option>Dark Fantasy Anime / Cartoon 2D Cinematic</option><option>Minimalist Japanese 2D cartoon</option><option>Cartoon 2D</option><option>3D cinematic</option><option>Realistis sinematik</option><option>Ilustrasi hitam putih</option></select></div><div class="field"><label>Gerakan kamera umum</label><select id="camera"><option>Anime action cepat</option><option>Sinematik dan dinamis</option><option>Stabil, lembut, dan dramatis</option><option>Static camera</option><option>Handheld realistis</option><option>Dokumenter natural</option></select></div></div>
+<div class="field"><label>Audio / backsound umum</label><input id="audio" placeholder="Musik epic, ambience, angin, efek benturan..."></div>
+<div class="field"><label>Dialog</label><select id="dialog"><option>Tanpa dialog, hanya ekspresi dan efek suara</option><option>Dialog bahasa Indonesia</option><option>Dialog bahasa Jawa</option><option>Narasi / voice over</option><option>Dialog bebas sesuai cerita</option></select></div>
+<div class="field"><label>Dialog / narasi umum (opsional)</label><textarea id="manualDialog" placeholder="Kalimat yang perlu dipertahankan..."></textarea></div>
+<div class="field"><label>Aturan kesinambungan / ending</label><textarea id="extra" placeholder="Contoh: Jangan reset posisi karakter; akhir setiap part harus menjadi awal part berikutnya. Tutup part terakhir dengan cliffhanger..."></textarea></div>
+<div class="btnrow"><button class="btn primary" id="generate">✦ Buat storyboard dengan Gemini</button><button class="btn secondary" id="reset">Reset</button></div>
+<p class="note">Pembagian part mengikuti urutan scene dan mengemas durasi sedekat mungkin dengan target. Scene tidak dipotong otomatis; bila satu scene lebih panjang dari target, part tersebut akan melebihi target.</p>
+</div></section>
+<section class="panel"><div class="head"><div><h3>02 / Editor dan ekspor prompt</h3><small class="muted">Edit adegan, cek kesinambungan, unduh per part</small></div><span class="pill">EDITOR</span></div><div class="body">
+<div class="stats"><div class="stat"><strong id="sc">0</strong><span>TOTAL SCENE</span></div><div class="stat"><strong id="total">0s</strong><span>TOTAL DURASI</span></div><div class="stat"><strong id="parts">0</strong><span>JUMLAH PART</span></div><div class="stat"><strong id="targetStat">10s</strong><span>TARGET / PART</span></div></div>
+<div class="toolbar"><div><h3>Daftar adegan</h3><small class="muted" id="range">Storyboard belum dibuat</small></div><div class="btnrow"><button class="btn secondary" id="add">+ Scene</button><button class="btn secondary" id="rebuild">↻ Susun ulang part</button></div></div>
+<div class="scenes" id="scenes"><div class="empty">▧<br><b>Storyboard belum dibuat</b><br>Isi ide cerita lalu tekan “Buat storyboard & pecah part”.</div></div>
+<div class="sectionTitle">03 / Master Prompt & paket unduhan</div>
+<p class="muted" style="font-size:11px;margin:0">Master Prompt yang sama akan disisipkan di bagian paling atas setiap file part. Prompt part juga memuat ringkasan sambungan dari part sebelumnya dan target pembuka untuk part berikutnya.</p>
+<details class="masterBox" open><summary>Lihat Master Prompt global</summary><pre id="masterPreview">Master Prompt akan muncul setelah storyboard dibuat.</pre></details>
+<div class="btnrow"><button class="btn primary" id="downloadAll">Unduh semua part (TXT)</button><button class="btn secondary" id="downloadMaster">Unduh Master Prompt</button><button class="btn secondary" id="copyAll">Salin semua prompt</button></div>
+<div id="partCards" class="partsWrap"><div class="empty">Kartu unduhan per part akan muncul di sini.</div></div>
+<div class="sectionTitle">04 / Simpan dan pulihkan proyek</div>
+<div class="btnrow"><button class="btn secondary" id="save">Simpan proyek JSON</button><button class="btn secondary" id="load">Buka proyek JSON</button><input hidden type="file" id="json" accept=".json"><button class="btn secondary" id="exportFull">Ekspor naskah lengkap TXT</button></div>
+<div id="status" class="status" aria-live="polite"></div>
+<p class="note">Catatan: aplikasi ini menyusun paket prompt secara lokal; belum memanggil model AI atau menganalisis isi gambar secara otomatis. Untuk hasil visual, unggah kembali gambar referensi ke generator video. Durasi part mengikuti durasi scene utuh; jika satu scene lebih panjang dari target, durasi part dapat melebihi target.</p>
+</div></section></div></div>
+<script>
+const $=id=>document.getElementById(id);
+let scenes=[],referenceImages=[],backgroundImages=[];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fields=['idea','character','setting','backgroundVoice','count','duration','partTarget','ratio','style','camera','audio','dialog','manualDialog','extra'];
+function say(msg){$('status').textContent=msg}
+function target(){return Math.max(1,+$('partTarget').value||10)}
+function masterPrompt(){
+ const refs=referenceImages.length?referenceImages.map((x,i)=>`${i+1}. ${x.name}`).join('\n'):'Tidak ada file referensi; ikuti deskripsi karakter secara ketat.';
+ const bgs=backgroundImages.length?backgroundImages.map((x,i)=>`${i+1}. ${x.name}`).join('\n'):'Tidak ada referensi latar tambahan.';
+ return `MASTER PROMPT GLOBAL — WAJIB DIIKUTI DI SEMUA PART
+PROYEK: ${$('idea').value.trim()||'Kembangkan cerita sesuai storyboard.'}
+GAYA VISUAL: ${$('style').value}
+RASIO: ${$('ratio').value}
+DUNIA / LATAR: ${$('setting').value||'Tentukan sesuai cerita dan jaga kesinambungannya.'}
+MASTER KARAKTER: ${$('character').value||'Pertahankan desain karakter dari gambar referensi.'}
+ACUAN KARAKTER:
+${refs}
+ACUAN LATAR:
+${bgs}
+ARAHAN LINGKUNGAN: ${$('backgroundVoice').value||'Jaga lokasi, cuaca, waktu, pencahayaan, dan properti tetap konsisten.'}
+KAMERA UMUM: ${$('camera').value}
+AUDIO UMUM: ${$('audio').value||'Gunakan musik dan efek suara yang sesuai emosi adegan.'}
+DIALOG UMUM: ${$('dialog').value}. ${$('manualDialog').value||''}
+ATURAN KUNCI KONSISTENSI:
+1. Desain wajah, rambut, pakaian, warna, proporsi tubuh, aksesori, senjata, dan ciri karakter tidak boleh berubah antar-scene/part.
+2. Jangan mengganti karakter, menambah/menghilangkan atribut penting, atau mengubah gaya visual.
+3. Pertahankan geografi lokasi, arah cahaya, cuaca, waktu, properti, dan posisi relatif karakter.
+4. Gerakan harus berkesinambungan: pose akhir scene sebelumnya menjadi pose awal scene berikutnya; jangan teleport atau reset posisi.
+5. Pertahankan kondisi luka, debu, kerusakan pakaian, senjata, dan objek yang sedang dibawa.
+6. Gunakan bahasa visual sinematik, gerakan masuk akal, anatomi stabil, tanpa flicker, morphing, duplikasi anggota tubuh, teks acak, atau perubahan desain.
+7. Setiap part harus terasa sebagai potongan dari satu video/episode yang sama, bukan video terpisah.
+ATURAN RENDER: Buat hanya adegan yang tercantum pada PART terkait. Jangan mengulang pembukaan dari episode, jangan membuat recap visual kecuali diminta.`;
+}
+function splitParts(){
+ const limit=target(),out=[];let current=[],seconds=0;
+ scenes.forEach((s,i)=>{
+  const d=Math.max(1,+s.duration||1);
+  if(current.length && seconds+d>limit){out.push({scenes:current,duration:seconds});current=[];seconds=0}
+  current.push({...s,index:i+1});seconds+=d;
+  if(seconds>=limit){out.push({scenes:current,duration:seconds});current=[];seconds=0}
+ });
+ if(current.length)out.push({scenes:current,duration:seconds});
+ return out;
+}
+function stats(){
+ const total=scenes.reduce((a,s)=>a+(+s.duration||0),0),parts=splitParts();
+ $('sc').textContent=scenes.length;$('total').textContent=total+'s';$('parts').textContent=parts.length;$('targetStat').textContent=target()+'s';
+ $('range').textContent=scenes.length?`Scene 1–${scenes.length} · ${total} detik · ${parts.length} part`:'Storyboard belum dibuat';
+}
+const beats=['Perkenalkan lokasi, suasana, dan karakter utama.','Tampilkan karakter mulai bergerak dan memperlihatkan tujuannya.','Bangun konflik atau kejadian penting.','Tampilkan reaksi karakter dan perkembangan aksi.','Hadirkan momen puncak, kejutan, atau perubahan besar.','Akhiri dengan penyelesaian singkat atau cliffhanger.'];
+async function create(){
+ const n=Math.max(1,Math.min(60,+$('count').value||6)),d=Math.max(1,Math.min(120,+$('duration').value||5));
+ $('count').value=n;$('duration').value=d;
+ const payload={
+  idea:$('idea').value.trim(),character:$('character').value.trim(),setting:$('setting').value.trim(),
+  backgroundVoice:$('backgroundVoice').value.trim(),count:n,duration:d,partTarget:target(),ratio:$('ratio').value,
+  style:$('style').value,camera:$('camera').value,audio:$('audio').value,dialog:$('dialog').value,
+  manualDialog:$('manualDialog').value,extra:$('extra').value,
+  referenceImages:referenceImages.slice(0,3).map(x=>({name:x.name,data:x.data})),
+  backgroundImages:backgroundImages.slice(0,2).map(x=>({name:x.name,data:x.data}))
+ };
+ if(!payload.idea){say('Isi ide / alur cerita terlebih dahulu.');$('idea').focus();return}
+ const btn=$('generate');btn.disabled=true;btn.textContent='⏳ Gemini sedang menyusun storyboard…';say('Menghubungi Gemini API. Mohon tunggu…');
+ try{
+  const response=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const data=await response.json().catch(()=>({error:'Respons server tidak valid.'}));
+  if(!response.ok)throw new Error(data.error||`Server error (${response.status})`);
+  if(!Array.isArray(data.scenes)||!data.scenes.length)throw new Error('Gemini tidak mengembalikan daftar scene yang valid.');
+  scenes=data.scenes.slice(0,n).map((x,i)=>({
+   title:String(x.title||`Scene ${String(i+1).padStart(2,'0')}`),
+   duration:Math.max(1,Math.min(120,Number(x.duration)||d)),
+   desc:String(x.desc||x.description||''),camera:String(x.camera||payload.camera),
+   audio:String(x.audio||payload.audio||'Ambience sinematik dan SFX'),
+   dialog:String(x.dialog||payload.dialog),manualDialog:String(x.manualDialog||x.dialogLine||'')
+  }));
+  render();say(`Berhasil! Gemini membuat ${scenes.length} scene. Master Prompt dan pembagian part siap diunduh.`);
+ }catch(err){say('Gagal membuat storyboard: '+err.message);alert('Gemini API: '+err.message)}
+ finally{btn.disabled=false;btn.textContent='✦ Buat storyboard dengan Gemini';}
+}
+function render(){
+ stats();const host=$('scenes');host.innerHTML='';
+ if(!scenes.length){host.innerHTML='<div class="empty">Storyboard belum dibuat.</div>';renderParts();return}
+ scenes.forEach((s,i)=>{
+  const c=document.createElement('article');c.className='scene';
+  c.innerHTML=`<div class="sceneTop"><b>🎬 ${esc(s.title)}</b><span class="time">${s.duration} detik</span></div><div class="sceneBody">
+  <label>Deskripsi adegan / aksi utama</label><textarea data-k="desc">${esc(s.desc)}</textarea>
+  <div class="mini"><div><label>Durasi (detik)</label><input type="number" min="1" max="120" data-k="duration" value="${+s.duration||1}"></div>
+  <div><label>Kamera scene</label><select data-k="camera">${['Static camera','Wide establishing shot','Medium tracking shot','Close-up ekspresi','Dynamic action shot','Low-angle dramatic shot','Slow push-in lalu cut','Orbit camera','POV shot','Over-the-shoulder shot','Bird’s-eye view','Dutch angle','Worm’s-eye view','Anime action cepat'].map(x=>`<option ${x===s.camera?'selected':''}>${x}</option>`).join('')}</select></div>
+  <div><label>Audio / efek suara</label><input data-k="audio" value="${esc(s.audio)}"></div>
+  <div><label>Jenis dialog</label><select data-k="dialog">${['Tanpa dialog, hanya ekspresi dan efek suara','Dialog bahasa Indonesia','Dialog bahasa Jawa','Narasi / voice over','Dialog bebas sesuai cerita'].map(x=>`<option ${x===s.dialog?'selected':''}>${x}</option>`).join('')}</select></div></div>
+  <div style="margin-top:8px"><label>Dialog khusus scene (opsional)</label><textarea data-k="manualDialog" placeholder="Dialog adegan ini...">${esc(s.manualDialog||'')}</textarea></div>
+  <div class="sceneActions"><button class="btn danger" data-del>Hapus scene</button></div></div>`;
+  c.querySelectorAll('[data-k]').forEach(el=>el.addEventListener('input',()=>{s[el.dataset.k]=el.value;c.querySelector('.time').textContent=(+s.duration||1)+' detik';stats();renderParts()}));
+  c.querySelector('[data-del]').onclick=()=>{scenes.splice(i,1);scenes.forEach((x,j)=>x.title='Scene '+String(j+1).padStart(2,'0'));render()};
+  host.appendChild(c);
+ });
+ $('masterPreview').textContent=masterPrompt();renderParts();
+}
+function makePartText(part,index,all){
+  const first=part.scenes[0],last=part.scenes[part.scenes.length-1];
+  const previous=index===0
+    ? 'PEMBUKA CERITA: Mulai dari kondisi awal yang dijelaskan pada scene pertama. Jangan membuat recap atau intro tambahan.'
+    : `SAMBUNGAN DARI PART ${String(index).padStart(2,'0')}: Lanjutkan langsung dari FRAME TERAKHIR part sebelumnya. Cocokkan pose tubuh, posisi karakter, arah pandang, screen direction, gerakan kamera, lokasi, pencahayaan, cuaca, properti, senjata, luka, dan kondisi pakaian. Jangan mengulang aksi, jangan mengubah posisi secara tiba-tiba, dan jangan membuat reset adegan.`;
+  const next=index===all.length-1
+    ? 'PART TERAKHIR: Akhiri cerita sesuai catatan ending proyek. Jangan menambahkan teaser atau adegan baru kecuali diminta.'
+    : `JEMBATAN KE PART ${String(index+2).padStart(2,'0')}: Frame terakhir harus menjadi titik awal yang bisa disambung langsung oleh PART ${String(index+2).padStart(2,'0')}. Akhiri dengan aksi yang masih berlangsung atau pose yang jelas; jangan menutup konflik yang harus berlanjut.`;
+  const sceneText=part.scenes.map(s=>{
+    const dialogueMode=s.dialog||$('dialog').value;
+    let dialogueInstruction;
+    if(dialogueMode.startsWith('Tanpa dialog')){
+      dialogueInstruction='TANPA DIALOG. Gunakan ekspresi, ambience, dan SFX saja.';
+    }else if(s.manualDialog && s.manualDialog.trim()){
+      dialogueInstruction=`Gunakan dialog berikut secara persis dan jangan mengulangnya di scene lain: ${s.manualDialog.trim()}`;
+    }else if(dialogueMode.includes('Narasi')){
+      dialogueInstruction='Buat narasi/voice-over bahasa Indonesia yang singkat, alami, sesuai kejadian visual, dan tidak mengulang informasi dari scene sebelumnya.';
+    }else{
+      dialogueInstruction=`Buat dialog ${dialogueMode.toLowerCase()} yang singkat dan alami. Beri label nama pembicara. Dialog harus menanggapi kejadian saat ini, melanjutkan percakapan sebelumnya bila ada, dan tidak mengulang kalimat dari scene lain.`;
+    }
+    return `--- ${s.title.toUpperCase()} (${s.duration} DETIK) ---
+ADEGAN: ${s.desc}
+KAMERA: ${s.camera||$('camera').value}
+AUDIO / SFX: ${s.audio||$('audio').value}
+DIALOG: ${dialogueInstruction}
+KONTINUITAS: Awali dari keadaan logis setelah scene sebelumnya. Pertahankan arah gerak, screen direction, posisi karakter, ekspresi, kondisi fisik, dan status semua objek. Akhiri dengan keadaan visual yang jelas untuk scene berikutnya.`;
+  }).join('\n\n');
+  return `${masterPrompt()}
+
+==================================================
+PART ${String(index+1).padStart(2,'0')} DARI ${String(all.length).padStart(2,'0')} — TARGET ${target()} DETIK
+DURASI AKTUAL: ${part.duration} DETIK | SCENE: ${first.title} s.d. ${last.title}
+==================================================
+ARAHAN SAMBUNGAN:
+${previous}
+
+${sceneText}
+
+ARAHAN AKHIR PART:
+${next}
+CATATAN ENDING / KEBUTUHAN KHUSUS: ${$('extra').value||'Jaga cliffhanger atau transisi sesuai alur; jangan mengubah kesinambungan.'}
+
+INSTRUKSI GENERATOR:
+- Render hanya PART ${String(index+1).padStart(2,'0')}, sesuai urutan scene di atas.
+- Jangan membuat intro/outro tambahan atau recap.
+- Pertahankan desain karakter, gaya visual, rasio, lokasi, dan audio sesuai Master Prompt.
+- Dialog harus alami, tidak berulang, dan sesuai durasi scene.
+- Jangan menambahkan karakter, properti penting, atau kejadian yang tidak diminta.
+- Jangan menampilkan subtitle atau teks acak kecuali diminta.
+- Gunakan perpindahan antar-scene yang mulus dan pertahankan kesinambungan frame.`;
+}
+function renderParts(){
+ const host=$('partCards');if(!scenes.length){host.innerHTML='<div class="empty">Kartu unduhan per part akan muncul di sini.</div>';$('masterPreview').textContent='Master Prompt akan muncul setelah storyboard dibuat.';return}
+ const parts=splitParts();$('masterPreview').textContent=masterPrompt();host.innerHTML='';
+ parts.forEach((p,i)=>{
+  const el=document.createElement('article');el.className='part';
+  const ids=p.scenes.map(s=>s.title).join(' · ');
+  el.innerHTML=`<div class="partHead"><h4>PART ${String(i+1).padStart(2,'0')}</h4><span class="pill">${p.duration}s / target ${target()}s</span></div><p>${esc(ids)}<br>Master Prompt + aturan sambungan otomatis disertakan.</p><button class="btn primary" type="button">⬇ Unduh prompt part ${i+1}</button>`;
+  el.querySelector('button').onclick=()=>download(makePartText(p,i,parts),`part-${String(i+1).padStart(2,'0')}-prompt-${p.duration}s.txt`);
+  host.appendChild(el);
+ });
+}
+function download(data,name,type='text/plain;charset=utf-8'){
+ const blob=new Blob([data],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function allText(){const p=splitParts();return p.map((x,i)=>makePartText(x,i,p)).join('\n\n\n'+'#'.repeat(60)+'\n\n\n')}
+function addScene(){scenes.push({title:'Scene '+String(scenes.length+1).padStart(2,'0'),duration:+$('duration').value||5,desc:'Tuliskan aksi visual dan perkembangan cerita pada adegan ini.',camera:$('camera').value,audio:$('audio').value,dialog:$('dialog').value,manualDialog:''});render()}
+function saveProject(){download(JSON.stringify({version:2,settings:Object.fromEntries(fields.map(k=>[k,$(k).value])),scenes,referenceImages,backgroundImages},null,2),'storyboard-studio-pro-project.json','application/json')}
+function loadProject(file){
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const d=JSON.parse(r.result);
+      if(!d || typeof d!=='object') throw new Error('Format proyek tidak valid');
+      Object.entries(d.settings||{}).forEach(([k,v])=>{if($(k) && v!==null && v!==undefined)$(k).value=v});
+      scenes=Array.isArray(d.scenes)?d.scenes.map((s,i)=>({
+        title:String(s.title||('Scene '+String(i+1).padStart(2,'0'))),
+        duration:Math.max(1,Math.min(120,+s.duration||5)),
+        desc:String(s.desc||''),
+        camera:String(s.camera||$('camera').value),
+        audio:String(s.audio||$('audio').value),
+        dialog:String(s.dialog||$('dialog').value),
+        manualDialog:String(s.manualDialog||'')
+      })):[];
+      referenceImages=Array.isArray(d.referenceImages)?d.referenceImages.filter(x=>x&&typeof x.data==='string'&&typeof x.name==='string'):[];
+      backgroundImages=Array.isArray(d.backgroundImages)?d.backgroundImages.filter(x=>x&&typeof x.data==='string'&&typeof x.name==='string'):[];
+      renderReferences();renderBackgrounds();render();say('Proyek berhasil dimuat.');
+    }catch(e){alert('File proyek tidak valid atau formatnya tidak didukung.');}
+  };
+  r.readAsText(file);
+}
+function renderGallery(arr,id,emptyId){const g=$(id);g.innerHTML='';if(emptyId)$(emptyId).style.display=arr.length?'none':'block';arr.forEach((im,i)=>{const el=document.createElement('div');el.className='reference-item';el.innerHTML=`<img src="${im.data}" alt="Referensi ${i+1}"><small title="${esc(im.name)}">${esc(im.name)}</small><button type="button" aria-label="Hapus gambar">×</button>`;el.querySelector('button').onclick=()=>{arr.splice(i,1);renderGallery(arr,id,emptyId);$('masterPreview').textContent=masterPrompt();renderParts()};g.appendChild(el)})}
+async function readImages(files,arr){
+  for(const f of files){
+    if(!f.type.startsWith('image/')) continue;
+    if(f.size>8*1024*1024){
+      say(`Gambar ${f.name} terlalu besar. Maksimal 8 MB per gambar.`);
+      continue;
+    }
+    const data=await new Promise((res,rej)=>{
+      const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f);
+    });
+    arr.push({name:f.name,data});
+  }
+}
+function renderReferences(){renderGallery(referenceImages,'referenceGallery','referenceEmpty')}
+function renderBackgrounds(){renderGallery(backgroundImages,'backgroundGallery')}
+$('generate').onclick=create;
+fetch('/api/health').then(r=>r.json()).then(d=>say('Server aktif · '+(d.model||'Gemini API siap'))).catch(()=>say('Server belum terhubung. Jalankan melalui server Node.js.'));$('add').onclick=addScene;$('rebuild').onclick=()=>{renderParts();say('Pembagian part diperbarui berdasarkan durasi scene terkini.')};
+$('partTarget').onchange=()=>{stats();renderParts();$('masterPreview').textContent=masterPrompt()};
+$('file').onchange=async e=>{await readImages(Array.from(e.target.files||[]),referenceImages);renderReferences();$('masterPreview').textContent=masterPrompt();e.target.value=''};
+$('backgroundFiles').onchange=async e=>{await readImages(Array.from(e.target.files||[]),backgroundImages);renderBackgrounds();$('masterPreview').textContent=masterPrompt();e.target.value=''};
+$('downloadAll').onclick=()=>{if(!scenes.length)return alert('Buat storyboard terlebih dahulu.');download(allText(),'semua-part-storyboard-prompts.txt')};
+$('downloadMaster').onclick=()=>download(masterPrompt(),'master-prompt-global.txt');
+$('copyAll').onclick=async()=>{if(!scenes.length)return alert('Buat storyboard terlebih dahulu.');try{await navigator.clipboard.writeText(allText());say('Semua prompt part berhasil disalin.')}catch(e){download(allText(),'semua-part-storyboard-prompts.txt')}};
+$('exportFull').onclick=()=>{if(!scenes.length)return alert('Buat storyboard terlebih dahulu.');download(allText(),'naskah-lengkap-per-part.txt')};
+$('save').onclick=saveProject;$('load').onclick=()=>$('json').click();$('json').onchange=e=>{if(e.target.files[0])loadProject(e.target.files[0]);e.target.value=''};
+$('reset').onclick=()=>{if(!confirm('Reset semua pengaturan dan storyboard?'))return;fields.forEach(k=>{if($(k))$(k).value=''});$('count').value=6;$('duration').value=5;$('partTarget').value=10;$('ratio').value='16:9 landscape';$('style').value='Anime Jepang 2D semi-realistis';$('camera').value='Anime action cepat';$('dialog').value='Tanpa dialog, hanya ekspresi dan efek suara';scenes=[];referenceImages=[];backgroundImages=[];renderReferences();renderBackgrounds();render();say('Proyek direset.')};
+fields.forEach(k=>{
+  if(!$(k)) return;
+  const refresh=()=>{
+    if(scenes.length){
+      $('masterPreview').textContent=masterPrompt();
+      stats();
+      renderParts();
+    }
+  };
+  $(k).addEventListener('input',refresh);
+  $(k).addEventListener('change',refresh);
+});
+render();
+</script></body></html>
